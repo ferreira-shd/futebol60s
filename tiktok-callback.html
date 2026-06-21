@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Autorizando TikTok - Futebol 60s</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="legal">
+    <main>
+      <h1>Autorizando TikTok</h1>
+      <p>Estamos conectando sua conta TikTok ao app local Cortes 60s.</p>
+      <p id="status">Redirecionando para o app local...</p>
+      <p>
+        Se nada acontecer, abra o app Cortes 60s no computador e clique novamente em
+        <strong>Autorizar TikTok</strong>.
+      </p>
+    </main>
+    <script>
+      const target = new URL("http://localhost:53683/callback/");
+      const source = new URL(window.location.href);
+      source.searchParams.forEach((value, key) => target.searchParams.set(key, value));
+      document.getElementById("status").textContent = "Abrindo o app local...";
+      window.location.replace(target.toString());
+    </script>
+  </body>
+</html>
